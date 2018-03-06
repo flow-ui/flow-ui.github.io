@@ -2924,6 +2924,50 @@
                                     </code>
                 </pre>
             </dd>
+            <dt id="Ajax-cache(ajax缓存)">ajax-cache</dt>
+            <dd>
+                <h5>描述</h5>
+                <p>为jQuery.ajax()扩展两种缓存方式，定时缓存和快照缓存，依赖jQuery。</p>
+                <h5>定时缓存</h5>
+                <p>定时缓存即在特定时长内缓存数据，开启定时缓存的请求，在第一次成功返回数据后将不再重复发起请求，而是直接使用缓存数据，缓存过期后将自动清除，再次请求成功后将再次缓存，开启新的缓存周期，原理类似于函数防抖。</p>
+                <p>开启定时缓存需要为ajax配置<code>localCache: Number</code>，数字为缓存时长，单位ms。</p>
+                <h5>快照缓存</h5>
+                <p>快照缓存即把每一次成功返回的ajax结果保存为快照，下次发起相同请求（判断依据是url和参数相同）时第一时间将快照取出返回给回调函数，待真实数据返回后校验与快照是否相同（需要数据为json格式），若相同则缓存命中，不同则再次调用回调函数并传入真实数据，为了使业务中能够区分出快照数据，会为对象格式的快照数据添加一个'snapshoot'属性值为'true'。</p>
+                <p>开启快照缓存需要为ajax配置<code>localCache: 'snapshoot'</code>选项。</p>
+                <h5>注意</h5>
+                <p>使用ajax缓存时必须用'success'配置Ajax的回调函数。</p>
+                <h5>演示</h5>
+                <pre>
+                    <code>
+            &lt;button id=&quot;test&quot; type=&quot;button&quot;&gt;send ajax&lt;/button&gt;
+            &lt;div id=&quot;log&quot;&gt;&lt;/div&gt;
+                    </code>
+                </pre>
+                <pre>
+                    <code>
+            //js
+            require('ajax-cache');
+            var $log = document.getElementById('log');
+            $('#test').on('click', function() {
+                $.ajax({
+                    url: "http://rapapi.org/mockjsdata/9195/common/getRandom",
+                    dataType:'json',
+                    localCache: 'snapshoot',
+                    success: function(res) {
+                        if (res.snapshoot) {
+                            $log.innerText = ('快照数据:' + res.data);
+                        } else {
+                            setTimeout(function() {
+                                $log.innerText = $log.innerText + ('\n最新数据:' + res.data);
+                                app.loading.hide();
+                            }, 0);
+                        }
+                    }
+                });
+            });
+                    </code>
+                </pre>
+            </dd>
             <dt id="Album(相册)">album</dt>
             <dd>
                 <h5>描述</h5>
@@ -3222,10 +3266,6 @@
                             <td>返回一个随机数字字母组合，接收长度参数，不传默认6位</td>
                         </tr>
                         <tr>
-                            <td>isEqual(Object,Object)</td>
-                            <td>返回布尔值，判断两个对象是否相同</td>
-                        </tr>
-                        <tr>
                             <td>deepcopy(source)</td>
                             <td>多维数组/对象数组深拷贝</td>
                         </tr>
@@ -3240,7 +3280,7 @@
                         <tr>
                             <td>ajaxSetup($)</td>
                             <td>
-                                <p>$.ajax增强，对请求的json数据做如下格式要求：</p>
+                                <p>对$.ajax配置默认值，对请求的json数据做如下格式要求：</p>
                                 <pre> <code>
         {
           status: "Y/N",   //必须，代表操作是否成功
@@ -3260,22 +3300,7 @@
                                               </code>
                                     </li>
                                     <li>默认<code>dataType</code>为<code>"json"</code>；</li>
-                                    <li>支持数据本地缓存，需浏览器支持localStorage，<code>localCache</code>参数传入数字将作为超时时间(毫秒数)；传入'snapshoot'字符串将开启快照缓存；传入0或任意假值将清除该缓存；示例
-                                        <pre> <code>
-        var $ = require('jquery');
-        var base = require('base');
-        base.ajaxSetup($);
-        $.ajax({
-          url: api.getxxx,
-          localCache: 1e5,                  //缓存100s
-          success:function(res, err){
-            
-          }
-        })
-                                                    </code>
-                                        </pre>
-                                    </li>
-                                    <li><code>error</code>回调默认处理，根据ajax的四种错误原因使用box插件弹出提示</li>
+                                    <li><code>error</code>回调默认处理，根据ajax的四种错误状态用box插件弹出提示</li>
                                 </ol>
                             </td>
                         </tr>
@@ -9506,45 +9531,6 @@ $.ajax({
     });
           </code>
         </pre>
-        <h3 id="ajaxCache">AJAX缓存</h3>
-        <p>框架为jQuery.ajax扩展两种缓存方式，定时缓存和快照缓存。</p>
-        <h4>定时缓存</h4>
-        <p>定时缓存即在特定时长内缓存数据，开启定时缓存的请求，在第一次成功返回数据后将不再重复发起请求，而是直接使用缓存数据，缓存过期后将自动清除，再次请求成功后将再次缓存，开启新的缓存周期，原理类似于函数防抖。</p>
-        <p>开启定时缓存需要为ajax配置<code>localCache: 36000  //ms</code>，并且使用'success'配置回调函数。</p>
-        <h4>快照缓存</h4>
-        <p>快照缓存即把每一次成功返回的ajax结果保存为快照，下次发起相同请求（判断依据是url和参数相同）时第一时间将快照取出返回给回调函数，待真实数据返回后校验与快照是否相同（需要数据为json格式），若相同则缓存命中，不同则再次调用回调函数并传入真实数据，为了使业务中能够区分出快照，会为快照数据添加一个'snapshoot'属性值为'true'。</p>
-        <p>开启快照缓存需要为ajax配置<code>localCache:'snapshoot', dataType:'json'</code>选项，并且使用'success'配置回调函数。</p>
-        <p>详见<a href="#Base(工具包)">【base.js】</a>中<code>ajaxSetup</code>，附快照缓存示例。</p>
-        <pre>
-            <code>
-    &lt;button id=&quot;test&quot; type=&quot;button&quot;&gt;send ajax&lt;/button&gt;
-    &lt;div id=&quot;log&quot;&gt;&lt;/div&gt;
-            </code>
-            <code>
-    //js
-    var base = require('base');
-    base.ajaxSetup($);
-    var $log = document.getElementById('log');
-    $('#test').on('click', function() {
-        $.ajax({
-            url: "http://rapapi.org/mockjsdata/9195/common/getRandom",
-            dataType:'json',
-            localCache: 'snapshoot',
-            success: function(res) {
-                if (res.snapshoot) {
-                    $log.innerText = ('快照数据:' + res.data);
-                } else {
-                    setTimeout(function() {
-                        $log.innerText = $log.innerText + ('\n最新数据:' + res.data);
-                        app.loading.hide();
-                    }, 0);
-                }
-            }
-        });
-    });
-            </code>
-        </pre>
-
         <h3 id="jscatch">js模块本地缓存</h3>
         <p>框架默认使用seajs-localcache插件实现模块缓存功能，通过manifest文件控制模块版本，manifest文件中注册的模块在第一次请求成功后会缓存到localStorage中，下次调用会直接从localStorage中读取，版本号变化则重新请求并更新本地缓存。</p>
         <p>manifest文件位于开发目录结构下的<code>/public/lib/seajs/manifest.js</code>，编译后合并至<code>/lib/seajs.js</code>。manifest文件必须完整记录模块库中的每个js模块路径，同时模块库中的模块必须是具名模块，模块名为文件名。</p>
