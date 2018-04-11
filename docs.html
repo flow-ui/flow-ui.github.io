@@ -4076,8 +4076,8 @@
                         <tr>
                             <th>data</th>
                             <td>
-                                <p>省市区数据，支持数组或能返回指定格式的地址字符串</p>
-                                <p>格式不限(需正确匹配"textKey"和"subKeys"设置)</p>
+                                <p>省市区数据，支持数组或能返回指定格式的异步请求地址，异步数据必须为json格式且包含<code>data</code>字段。</p>
+                                <p><code>data</code>格式不限(需正确匹配"textKey"和"subKeys"设置)</p>
                             </td>
                         </tr>
                         <tr>
@@ -6206,7 +6206,7 @@
             <dt id="Paging-load(分页加载)">paging-load</dt>
             <dd>
                 <h5>描述</h5>
-                <p>自动生成分页参数的请求方法，调用后返回当前分页加载实例</p>
+                <p>自动生成分页参数的请求方法，调用后返回当前分页加载实例，约定异步数据格式为json，必须包含<code>data</code>和<code>count</code>字段，分别代表每页数据和数据总条数。</p>
                 <h5>配置</h5>
                 <table class="table">
                     <tbody>
@@ -6232,7 +6232,7 @@
                         </tr>
                         <tr>
                             <th>nomore</th>
-                            <td>没有更多回调(需符合<a href="#f_b">前后端分离</a>数据约定)</td>
+                            <td>没有更多回调</td>
                         </tr>
                         <tr>
                             <th>error</th>
@@ -9292,59 +9292,7 @@
     <section class="wrap" id="patch">
         <h2>解决方案</h2>
         <p>内置解决方案示例见<a href="https://github.com/tower1229/Flow-UI/tree/master/flow-ui" target="_blank">flow-ui/</a>。</p>
-        <h3 id="f_b">前后端分离</h3>
-        <p>前后端分离是系统工程，其中最基本要做到的两点，一是通过数据接口实现数据交互，二是约定交互的数据格式，使<code>view</code>层操作全部落在前端，即可从开发上实现前后端解耦</p>
-        <p>框架默认提供一个<code>js/api.js</code>文件，即接口管理模块，业务代码中不再具体写死数据请求地址，而是通过该模块获取指定的api，约定前后端交互数据基本格式如下：</p>
-        <pre>
-            <code>
-{
-    "status": "Y",      //请求的状态 "Y"/"N"，也可以根据情况扩展其他
-    "data": [{...}],    //请求的数据 数组或对象
-    "msg": ""           //【可选】服务端提示信息
-}
-            </code>
-        </pre>
-        <p>典型用法如下：</p>
-        <pre>
-            <code>
-//api.js
-define(function(require, exports, module) {
-    //开发模式
-    var develop = true;
-    // api管理
-    var api = {
-        login: develop ? '/test.login.json' : '/login'
-    };
-
-    module.exports = api;
-});
-            </code>
-            <code>
-//login.js
-var api = require('js/api');
-$.ajax({
-    url: api.login,
-    data:{
-        ...
-    },
-    success:function(res){
-        /* 后端返回
-        {
-            "status": "Y", 
-            "data": {
-                "location": "/view/login/"
-            }
-        } 
-        */
-        if(res.status==='Y'){
-            if(res.data.location){
-                window.location.href = res.data.location;
-            }
-        }
-    }
-})
-            </code>
-        </pre>
+        
         <h3 id="CrossTerminal">响应式开发</h3>
         <p><code>css/style.css</code>已经包含对应的媒体查询，默认断点是：<code> {Pc} > 1024 > {Pad} > 640 > {Mobile} </code>，响应式网站开发除了css媒体查询以外，至少还要具备三项功能：响应式栅格系统、终端识别，响应图片。</p>
         <ol>
