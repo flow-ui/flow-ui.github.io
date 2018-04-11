@@ -1810,7 +1810,7 @@
                 </dd>
                 <dt id="tools(常用工具)">tools.less</dt>
                 <dd>
-                    <p></p>
+                    <p><strong>注意：</strong>移动端需要使用<code>tools-mobile.less</code>，以支持<a href="#mobileFixed">移动端屏幕适配</a>。</p>
                     <table class="table">
                         <tr>
                             <td>.wrap</td>
@@ -2959,7 +2959,6 @@
                         } else {
                             setTimeout(function() {
                                 $log.innerText = $log.innerText + ('\n最新数据:' + res.data);
-                                app.loading.hide();
                             }, 0);
                         }
                     }
@@ -3277,33 +3276,7 @@
                             <td>$.cookie(name,value)</td>
                             <td>操作cookie，name：键名；value：设置为的值，一个参数取值，返回value，两个参数赋值，无返回值</td>
                         </tr>
-                        <tr>
-                            <td>ajaxSetup($)</td>
-                            <td>
-                                <p>对$.ajax配置默认值，对请求的json数据做如下格式要求：</p>
-                                <pre> <code>
-        {
-          status: "Y/N",   //必须，代表操作是否成功
-          data: "...",     //请求返回的数据
-          msg: "..."       //操作提示信息
-        }
-                                            </code>
-                                </pre>
-                                <ol>
-                                    <li>默认超时时间配置，见seajs.config.js文件：
-                                        <code>
-        seajs.set = {
-          util: {
-            timeout: 1.5e4
-          }
-        };
-                                              </code>
-                                    </li>
-                                    <li>默认<code>dataType</code>为<code>"json"</code>；</li>
-                                    <li><code>error</code>回调默认处理，根据ajax的四种错误状态用box插件弹出提示</li>
-                                </ol>
-                            </td>
-                        </tr>
+                        
                         <tr>
                             <td>browser</td>
                             <td>
