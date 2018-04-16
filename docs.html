@@ -3361,6 +3361,58 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>storage</td>
+                            <td>
+                                <p>localStorage操作模块</p>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>val(key, [val])</th>
+                                            <td>
+                                                <p>数据存/取，支持对象、数字格式自动个转化</p>
+                                                <pre> <code>
+          base.storage.val('test',{a:1});   //存
+          base.storage.val('test');         //{a:1}
+                                                        </code>
+                                                </pre>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>remove(key)</th>
+                                            <td>
+                                                <p>删除指定字段数据</p>
+                                                <pre> <code>
+          base.storage.remove('test'); 
+                                                             </code>
+                                                </pre>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>clear([safeStorage])</th>
+                                            <td>
+                                                <p>清空本地数据，safeStorage是可选保留字段，数组格式</p>
+                                                <pre> <code>
+          base.storage.clear(); 
+                                                             </code>
+                                                </pre>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>leaveSpace()</th>
+                                            <td>
+                                                <p>返回剩余空间</p>
+                                                <pre> <code>
+          base.storage.leaveSpace();    //返回剩余空间，单位B
+                                                             </code>
+                                                </pre>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p> </p>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>throttle(fn, [delay], [duration])</td>
                             <td>
                                 <p>函数节流，用于过滤resize，mousemove，scroll这类频连续繁触发事件</p>
