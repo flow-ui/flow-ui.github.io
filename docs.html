@@ -4628,15 +4628,19 @@
                         </tr>
                         <tr>
                             <th>sortkey</th>
-                            <td>默认<code>"data-key"</code>，拖拽元素的排序标识</td>
+                            <td>默认<code>"data-key"</code>，被拖拽元素的排序标识</td>
                         </tr>
                         <tr>
                             <th>dragable</th>
-                            <td>默认<code>".dragable"</code>，可拖拽元素</td>
+                            <td>默认<code>".dragable"</code>，被拖拽元素</td>
                         </tr>
                         <tr>
-                            <th>dragline</th>
-                            <td>默认<code>".flex-row"</code>，拖拽元素的行元素</td>
+                            <th>dragwrap</th>
+                            <td>默认<code>null</code>，被拖拽元素的包裹元素，设置该项可实现多栏/多行效果</td>
+                        </tr>
+                        <tr>
+                            <th>dragwrapLimitLength</th>
+                            <td>默认<code>1</code>，每个包裹元素中的被拖拽元素最小数量限制</td>
                         </tr>
                         <tr>
                             <th>ondrag</th>
@@ -4697,6 +4701,7 @@
                 <pre> <code>
             require('drag-panel');
             $('#wrapper').dragPanel({
+                dragwrap: '.flex-row',
                 ondrag: function(newSort) {
                     console.log(newSort);
                 }
