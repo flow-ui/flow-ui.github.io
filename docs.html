@@ -4646,11 +4646,14 @@
                             <th>ondrag</th>
                             <td>默认无，拖拽结束回调，返回新的排序标识数据</td>
                         </tr>
+                        <tr>
+                            <th>showShadow</th>
+                            <td>默认<code>false</code>，是否显示一个被拖拽元素的克隆元素</td>
+                        </tr>
                     </tbody>
                 </table>
                 <h5>自动添加类</h5>
-                <p>dragstart自动为<code>el</code>元素添加<code>"drag-panel-wrap"</code>类，为<code>opt.dragable</code>元素添加<code>"drag-panel-cell"</code>类；</p>
-                <p>dragover自动为所经过的元素添加<code>"drag-panel-over"</code>类。</p>
+                <p>dragstart自动为<code>el</code>元素添加<code>"drag-panel-wrap"</code>类，为<code>opt.dragable</code>元素添加<code>"drag-panel-active"</code>类；</p>
                 <h5>示例</h5>
                 <pre> <code>
             &lt;div class="wrap" id="wrapper"&gt;
