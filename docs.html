@@ -4656,58 +4656,58 @@
                 <p>dragstart自动为<code>el</code>元素添加<code>"drag-panel-wrap"</code>类，为<code>opt.dragable</code>元素添加<code>"drag-panel-active"</code>类；</p>
                 <h5>示例</h5>
                 <pre> <code>
-            &lt;div class="wrap" id="wrapper"&gt;
-                &lt;div class="flex-row"&gt;
-                    &lt;div class="flex-1 m dragable" data-key="1"&gt;
-                        &lt;div class="card card-bordered"&gt;
-                            &lt;div class="card-head"&gt;
-                                &lt;div class="card-title"&gt; Hello Card&lt;/div&gt;
+                    &lt;style&gt;
+                .drag-panel-active{opacity: .2;}
+            &lt;/style&gt;
+            &lt;div class=&quot;wrap&quot;&gt;
+                &lt;div class=&quot;row&quot; id=&quot;wrapper&quot;&gt;
+                    &lt;div class=&quot;span-4 m dragable&quot; data-key=&quot;1&quot;&gt;
+                        &lt;div class=&quot;card card-shadow card-primary&quot;&gt;
+                            &lt;div class=&quot;card-head&quot;&gt;
+                                &lt;div class=&quot;card-title&quot;&gt; Hello Card1&lt;/div&gt;
                             &lt;/div&gt;
-                            &lt;div class="card-body"&gt;
-                                mycard1
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                    &lt;div class="flex-1 m dragable" data-key="2"&gt;
-                        &lt;div class="card card-shadow"&gt;
-                            &lt;div class="card-head"&gt;
-                                &lt;div class="card-title"&gt; Hello Card&lt;/div&gt;
-                            &lt;/div&gt;
-                            &lt;div class="card-body"&gt;
-                                mycard2
+                            &lt;div class=&quot;card-body&quot;&gt;
+                                mycard
                             &lt;/div&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
-                &lt;/div&gt;
-                &lt;div class="flex-row"&gt;
-                    &lt;div class="flex-1 m dragable" data-key="3"&gt;
-                        &lt;div class="card card-bordered"&gt;
-                            &lt;div class="card-head"&gt;
-                                &lt;div class="card-title"&gt; Hello Card&lt;/div&gt;
+                    &lt;div class=&quot;span-4 m dragable&quot; data-key=&quot;2&quot;&gt;
+                        &lt;div class=&quot;card card-shadow card-primary&quot;&gt;
+                            &lt;div class=&quot;card-head&quot;&gt;
+                                &lt;div class=&quot;card-title&quot;&gt; Hello Card2&lt;/div&gt;
                             &lt;/div&gt;
-                            &lt;div class="card-body"&gt;
-                                mycard3
+                            &lt;div class=&quot;card-body&quot;&gt;
+                                mycard
                             &lt;/div&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
-                    &lt;div class="flex-1 m dragable" data-key="4"&gt;
-                        &lt;div class="card card-shadow"&gt;
-                            &lt;div class="card-head"&gt;
-                                &lt;div class="card-title"&gt; Hello Card&lt;/div&gt;
+                    &lt;div class=&quot;span-4 m dragable&quot; data-key=&quot;3&quot;&gt;
+                        &lt;div class=&quot;card card-shadow card-primary&quot;&gt;
+                            &lt;div class=&quot;card-head&quot;&gt;
+                                &lt;div class=&quot;card-title&quot;&gt; Hello Card3&lt;/div&gt;
                             &lt;/div&gt;
-                            &lt;div class="card-body"&gt;
-                                mycard4
+                            &lt;div class=&quot;card-body&quot;&gt;
+                                mycard
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;span-4 m dragable&quot; data-key=&quot;4&quot;&gt;
+                        &lt;div class=&quot;card card-shadow card-primary&quot;&gt;
+                            &lt;div class=&quot;card-head&quot;&gt;
+                                &lt;div class=&quot;card-title&quot;&gt; Hello Card4&lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&quot;card-body&quot;&gt;
+                                mycard
                             &lt;/div&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
                 &lt;/div&gt;
             &lt;/div&gt;
-                                    </code>
+                    </code>
                 </pre>
                 <pre> <code>
             require('drag-panel');
             $('#wrapper').dragPanel({
-                dragwrap: '.flex-row',
                 ondrag: function(newSort) {
                     console.log(newSort);
                 }
