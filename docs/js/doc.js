@@ -107,6 +107,14 @@ define(function(require) {
 		//移动端
 		$('pre code').css('display', 'block');
 	}
-
+	// 演示代码
+	var $playground = $('.playground');
+	var encode = function(html){
+		return html.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+	};
+	$playground.each(function(i, e){
+		var codeHTML = '<div style="margin-top:-33px;"><pre><code>'+encode($(this).html())+'</code></pre></div>';
+		$(this).after(codeHTML);
+	});
 
 });
