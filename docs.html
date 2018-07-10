@@ -7333,8 +7333,8 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <th>update(data)</th>
-                            <td>用于更新实例数据</td>
+                            <th>update([data])</th>
+                            <td>用于更新实例数据，参数接收数组类型数据，没有参数将从DOM节点中收集数据</td>
                         </tr>
                         <tr>
                             <th>disabled([flag])</th>
@@ -7353,8 +7353,8 @@
                             <td>清空输入</td>
                         </tr>
                         <tr>
-                            <th>reset()</th>
-                            <td>恢复实例为初始值</td>
+                            <th>reset([flag])</th>
+                            <td>恢复实例为初始值，若flag为真值将不触发onChange事件</td>
                         </tr>
                         <tr>
                             <th>text([setValue])</th>
