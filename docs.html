@@ -7507,7 +7507,17 @@
             });
             //set2
             $('.set2').on('click', function() {
-                select2.update(dataAjax);
+                select2.update([{
+                    "option": "济南",
+                    "value": "jinan"
+                }, {
+                    "option": "烟台",
+                    "value": "yantai",
+                    "selected": true
+                }, {
+                    "option": "青岛",
+                    "value": "qingdao"
+                }]);
             });
 
             $('.set4').on('click', function() {
