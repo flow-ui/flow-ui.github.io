@@ -7593,14 +7593,9 @@
                   return sec + 's';
                 },
                 url: "http://rap.taobao.org/mockjsdata/9195/common/getYes/",
-                sendBefore: function(mobile, suc, err) {
+                sendBefore: function(mobile) {
                   alert('sendBefore:mobile is ' + mobile);
-                  if (mobile === '156555555') {
-                    suc();
-                  } else {
-                    err();
-                    alert('手机号验证不通过！');
-                  }
+                  return true;
                 },
                 sendAfter: function() {
                   alert('sendAfter callback');
