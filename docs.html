@@ -2164,7 +2164,7 @@
                 <pre> <code>
           &lt;!--html--&gt;
           &lt;audio preload="auto" &gt;
-             &lt;source src="http://static.refined-x.com/sample.mp3" /&gt;
+             &lt;source src="http://static.refined-x.com/static/sample.mp3" /&gt;
           &lt;/audio&gt;
                               </code>
                 </pre>
@@ -2253,7 +2253,7 @@
           var player=require('flv');
 
           var player_2 = player({
-             src: 'http://static.refined-x.com/sample.flv',
+             src: 'http://static.refined-x.com/static/sample.flv',
              loop:true
           });
           var player_3 = player({
@@ -2971,7 +2971,7 @@
                 <h5>示例</h5>
                 <pre> <code>
           &lt;video id="really-cool-video" class="video-js vjs-default-skin"&gt;
-            &lt;source src="http://static.refined-x.com/sample.mp4" type='video/mp4'&gt;
+            &lt;source src="http://static.refined-x.com/static/sample.mp4" type='video/mp4'&gt;
             &lt;p class="vjs-no-js"&gt;不支持js的浏览器会看到这个&lt;/p&gt;
           &lt;/video&gt;
                                     </code>
@@ -4001,7 +4001,7 @@
             });
 
             $('.boximg').on('click',function(){
-              var imgBox = Box.img('http://static.refined-x.com/view0.jpg',{
+              var imgBox = Box.img('http://static.refined-x.com/static/view0.jpg',{
                 onshow:function($this){
                   $this.on('click',function(){
                     Box.hide(imgBox);
@@ -7735,11 +7735,11 @@
                     <code>
           &lt;div class="demo"&gt;
             &lt;ul&gt;
-              &lt;li&gt;&lt;img src="http://static.refined-x.com/view0.jpg" /&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;img src="http://static.refined-x.com/view1.jpg" /&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;img src="http://static.refined-x.com/view2.jpg" /&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;img src="http://static.refined-x.com/view3.jpg" /&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;img src="http://static.refined-x.com/view4.jpg" /&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;img src="http://static.refined-x.com/static/view0.jpg" /&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;img src="http://static.refined-x.com/static/view1.jpg" /&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;img src="http://static.refined-x.com/static/view2.jpg" /&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;img src="http://static.refined-x.com/static/view3.jpg" /&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;img src="http://static.refined-x.com/static/view4.jpg" /&gt;&lt;/li&gt;
             &lt;/ul&gt;
           &lt;/div&gt;
 
@@ -8794,7 +8794,7 @@
                         mehtod: true,
                         handle: function(key, type){
                             datagrid.load({
-                                url: 'https://static.refined-x.com/phone.json',
+                                url: 'https://static.refined-x.com/static/phone.json',
                                 data: {
                                     sort: type,
                                     key: key
@@ -8924,7 +8924,7 @@
             var datagrid = Table({
                 el:'.mytable',
                 load: {
-                    url: 'https://static.refined-x.com/phone.json',
+                    url: 'https://static.refined-x.com/static/phone.json',
                     data: {
                         id: 123
                     },
